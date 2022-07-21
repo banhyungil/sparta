@@ -89,6 +89,9 @@
             margin: 0 5px;
         }
     </style>
+    <script>
+
+    </script>
 </head>
 
 <body>
@@ -98,8 +101,8 @@
     </div>
     <section class="sec-post">
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">영화 URL</label>
+          <input type="url" class="form-control" id="imgUrl" placeholder="https://cdn4.buysellads.net/uu/1/3386/1525189943-38523.png">
+          <label for="imgUrl">영화 이미지 URL</label>
         </div>
         <div class="input-group mb-3">
           <label class="input-group-text" for="inputGroupSelect01">별점</label>
@@ -123,52 +126,57 @@
 
     </section>
     <section class="sec-card">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div id="cardCntr" class="row row-cols-1 row-cols-md-4 g-4">
             <div class="col">
                 <div class="card">
                     <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
                          class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">😙영화 제목이 들어갑니다.</h5>
-                        <p class="card-text">👽영화 내용이 들어갑니다.</p>
+                        <h5 class="card-title">수어사이드 스쿼드</h5>
+                        <p class="card-text">악당을 악당으로! 슈퍼 빌런 팀 수어사이드 스쿼드 창설</p>
                         <p>⭐⭐⭐</p>
-                        <p3 class="myComent">🤖여기에 코멘트가 들어갑니다.</p3>
+                        <p3 class="myComent">
+                            다들 처음보는 악당들이였는데, 꽤 스릴있게 본것 같다. 빌런들이 힘을 합치는 모습 신선하다👍
+                        </p3>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                    <img src="https://upload.wikimedia.org/wikipedia/ko/b/bc/%EB%B0%B1%EB%91%90%EC%82%B0_%EC%98%81%ED%99%94_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg"
                          class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다.</h5>
-                        <p class="card-text">영화 내용이 들어갑니다.</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="myComent">여기에 코멘트가 들어갑니다.</p>
+                        <h5 class="card-title">백두산</h5>
+                        <p class="card-text">대한민국 관측 역사상 최대 규모의 백두산 폭발 발생.
+                            갑작스러운 재난에 한반도는 순식간에 아비규환이 되고,
+                            남과 북 모두를 집어삼킬 추가 폭발이 예측된다.</p>
+                        <p>⭐⭐⭐⭐</p>
+                        <p class="myComent">이병헌에 진지함과 하정우의 가벼움이 조화가되어 웃음이 터진 영화, 재밌었다😁</p>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                    <img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201602/19/htm_2016021916543471961.jpg"
                          class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다.</h5>
-                        <p class="card-text">영화 내용이 들어갑니다.</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="myComent">여기에 코멘트가 들어갑니다.</p>
+                        <h5 class="card-title">뷰티인사이드</h5>
+                        <p class="card-text">자고 일어나면 내 모습이 바뀐다! 이 모습으로 사랑 할 수 있을까?</p>
+                        <p>⭐⭐⭐⭐</p>
+                        <p class="myComent">한효주는 역시 예쁘다😀</p>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                    <img src="https://t1.daumcdn.net/cfile/tistory/9921633E5E4A86EE30"
                          class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다.</h5>
-                        <p class="card-text">영화 내용이 들어갑니다.</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="myComent">여기에 코멘트가 들어갑니다.</p>
+                        <h5 class="card-title">1917</h5>
+                        <p class="card-text">시간이 적이다. 제한된 시간안에 작전을 수행하라</p>
+                        <p>⭐⭐⭐⭐⭐</p>
+                        <p class="myComent">원테이크 신으로 영화가 제작되었는데 엄청 신선하였고 몰입도 있게 보았던 영화.
+                            5번 까지는 다시 봐도 안 질릴듯.😌</p>
                     </div>
                 </div>
             </div>
