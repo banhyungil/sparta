@@ -5,3 +5,4 @@ Ctrl + Alt + S : 환경설정
 Alt + insert : 새파일
 Shift + Esc : 왼쪽 탐색기 창 숨기기
 Alt + 1 : 프로젝트 창 열기
+Ctrl + L : 다음 찿기

@@ -93,6 +93,10 @@
         }
     </style>
     <script>
+        $("document").ready(init);
+        function init () {
+
+        }
         /**
          * 내가 작성한 정보를 기반으로 카드를 더하는 기능
          * @param {object} oOpt : (imgUrl, content, star, comment)
@@ -102,31 +106,65 @@
                 imgUrl: $("#imgUrl").val(),
                 title: $("#title").val(),
                 content: $("#content").val(),
-                rating: $("#rating").val(),
+                rating: $("#rating option:selected").text(),
                 comment: $("#comment").val()
             }
             let divCardCntr = document.querySelector("#cardCntr");
-
             // *****************************
 
             // card 생성
-            let newCard = createCard();
+            let newCard = createCard(oCard);
+            console.log(newCard);
 
             // card 끝에 추가
             divCardCntr.append(newCard);
         }
         function createCard (oCard) {
-            let divCard = document.querySelector("#cardCntr > .col");
+
+            let divCard = $("#cardCntr > .col")[0];
 
             let newCard = document.importNode(divCard, true);   // card 복사
             // 복사 카드 입력값으로 설정
-            setCard(newCard, )
-            // 생성된 카드 반환
+            let keys = Object.keys(oCard);
+            for(let key of keys){
+                setCard(newCard, key, oCard[key]);
+            }
 
-            // 복사된 card내에 element 식별을 어떻게 할까? 클래스로 찿는 방법은?
+            // 생성된 카드 반환
+            return newCard;
         }
         function setCard (card, type, val) {
-            $("type")
+             // 카드내에 특정 엘리먼트에 접근해 값을 바꿔야한다.
+            /**
+             * 엘리먼트 접근자
+             * img : .card-img-top
+             * title : .card-title
+             * content : .card-content
+             * rating : .card-rating
+             * comment : .card-comment
+             */
+            switch (type) {
+                case "imgUrl":
+                    $(card).find(".card-img-top").eq(0).attr("src", val);
+
+                    break;
+                case "title":
+                    $(card).find(".card-title").eq(0).html(val);
+
+                    break;
+                case "content":
+                    $(card).find(".card-content").eq(0).html(val);
+
+                    break;
+                case "rating":
+                    $(card).find(".card-rating").eq(0).html(val);
+
+                    break;
+                case "comment":
+                    $(card).find(".card-comment").eq(0).html(val);
+
+                    break;
+            }
         }
     </script>
 </head>
@@ -177,8 +215,8 @@
                          class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">수어사이드 스쿼드</h5>
-                        <p class="card-text">악당을 악당으로! 슈퍼 빌런 팀 수어사이드 스쿼드 창설</p>
-                        <p>⭐⭐⭐</p>
+                        <p class="card-content">악당을 악당으로! 슈퍼 빌런 팀 수어사이드 스쿼드 창설</p>
+                        <p class="card-rating">⭐⭐⭐</p>
                         <p class="card-comment">
                             다들 처음보는 악당들이였는데, 꽤 스릴있게 본것 같다. 빌런들이 힘을 합치는 모습 신선하다👍
                         </p>
@@ -191,10 +229,10 @@
                          class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">백두산</h5>
-                        <p class="card-text">대한민국 관측 역사상 최대 규모의 백두산 폭발 발생.
+                        <p class="card-content">대한민국 관측 역사상 최대 규모의 백두산 폭발 발생.
                             갑작스러운 재난에 한반도는 순식간에 아비규환이 되고,
                             남과 북 모두를 집어삼킬 추가 폭발이 예측된다.</p>
-                        <p>⭐⭐⭐⭐</p>
+                        <p class="card-rating">⭐⭐⭐⭐</p>
                         <p class="card-comment">이병헌에 진지함과 하정우의 가벼움이 조화가되어 웃음이 터진 영화, 재밌었다😁</p>
                     </div>
                 </div>
@@ -205,7 +243,7 @@
                          class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">뷰티인사이드</h5>
-                        <p class="card-text">자고 일어나면 내 모습이 바뀐다! 이 모습으로 사랑 할 수 있을까?</p>
+                        <p class="card-content">자고 일어나면 내 모습이 바뀐다! 이 모습으로 사랑 할 수 있을까?</p>
                         <p class="card-rating">⭐⭐⭐⭐</p>
                         <p class="card-comment">한효주는 역시 예쁘다😀</p>
                     </div>
@@ -217,8 +255,8 @@
                          class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">1917</h5>
-                        <p class="card-text">시간이 적이다. 제한된 시간안에 작전을 수행하라</p>
-                        <p>⭐⭐⭐⭐⭐</p>
+                        <p class="card-content">시간이 적이다. 제한된 시간안에 작전을 수행하라</p>
+                        <p class="card-rating">⭐⭐⭐⭐⭐</p>
                         <p class="card-comment">원테이크 신으로 영화가 제작되었는데 엄청 신선하였고 몰입도 있게 보았던 영화.
                             5번 까지는 다시 봐도 안 질릴듯.😌</p>
                     </div>
