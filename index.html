@@ -13,160 +13,11 @@
 
     <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&family=Nanum+Gothic+Coding:wght@400;700&display=swap');
-
-       *{
-           font-family: 'Gowun Dodum', sans-serif;
-       }
-        .myTitle {
-            background-color: green;
-
-            width: 100%;
-            height: 250px;
-
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url("https://movie-phinf.pstatic.net/20210715_95/1626338192428gTnJl_JPEG/movie_image.jpg");
-            background-position: center;
-            background-size: cover;
-
-            color: white;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .myTitle > button {
-            width: 200px; height: 50px;
-            background-color: transparent;
-            color: white;
-            border: 1px solid white; border-radius: 50px;
-            margin-top: 20px;
-        }
-
-        .myTitle > button:hover{
-            border:2px solid white;
-        }
-
-        .card-comment {
-            color: gray;
-        }
-
-        .sec-card {
-            width: 1200px;
-            margin: auto;
-            margin-top: 20px;
-        }
-
-        .sec-post {
-            max-width: 500px;
-            width: 95%;
-            margin: auto;
-            margin-top: 20px;
-            box-shadow: 0px 0px 3px 0px;
-            padding: 20px;
-            font-family: 'Black Han Sans', sans-serif;
-            font-size: 30px;
-        }
-        .sec-post > div {
-            margin-top: 10px;
-        }
-        .sec-post label{
-            font-size: 15px;
-        }
-
-        .post-btn {
-            margin-top: 10px;
-        }
-
-        .post-btn {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-
-            margin-top: 15px;
-        }
-
-        .post-btn > button{
-            margin: 0 5px;
-        }
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>                                     /* 외부 css 파일 import */
+        @import url('css/cinema.css');
     </style>
-    <script>
-        $("document").ready(init);
-        function init () {
-
-        }
-        /**
-         * 내가 작성한 정보를 기반으로 카드를 더하는 기능
-         * @param {object} oOpt : (imgUrl, content, star, comment)
-         */
-        function addCard () {
-            let oCard = {
-                imgUrl: $("#imgUrl").val(),
-                title: $("#title").val(),
-                content: $("#content").val(),
-                rating: $("#rating option:selected").text(),
-                comment: $("#comment").val()
-            }
-            let divCardCntr = document.querySelector("#cardCntr");
-            // *****************************
-
-            // card 생성
-            let newCard = createCard(oCard);
-            console.log(newCard);
-
-            // card 끝에 추가
-            divCardCntr.append(newCard);
-        }
-        function createCard (oCard) {
-
-            let divCard = $("#cardCntr > .col")[0];
-
-            let newCard = document.importNode(divCard, true);   // card 복사
-            // 복사 카드 입력값으로 설정
-            let keys = Object.keys(oCard);
-            for(let key of keys){
-                setCard(newCard, key, oCard[key]);
-            }
-
-            // 생성된 카드 반환
-            return newCard;
-        }
-        function setCard (card, type, val) {
-             // 카드내에 특정 엘리먼트에 접근해 값을 바꿔야한다.
-            /**
-             * 엘리먼트 접근자
-             * img : .card-img-top
-             * title : .card-title
-             * content : .card-content
-             * rating : .card-rating
-             * comment : .card-comment
-             */
-            switch (type) {
-                case "imgUrl":
-                    $(card).find(".card-img-top").eq(0).attr("src", val);
-
-                    break;
-                case "title":
-                    $(card).find(".card-title").eq(0).html(val);
-
-                    break;
-                case "content":
-                    $(card).find(".card-content").eq(0).html(val);
-
-                    break;
-                case "rating":
-                    $(card).find(".card-rating").eq(0).html(val);
-
-                    break;
-                case "comment":
-                    $(card).find(".card-comment").eq(0).html(val);
-
-                    break;
-            }
-        }
-    </script>
+    <script defer src="js/cinema.js"></script>        <!-- 외부 js 파일 import -->
 </head>
 
 <body>
@@ -175,32 +26,26 @@
         <button>영화 기록하기</button>
     </div>
     <section class="sec-post">
-        <div class="form-floating mb-3">
-          <input type="url" class="form-control" id="imgUrl" placeholder="https://cdn4.buysellads.net/uu/1/3386/1525189943-38523.png">
-          <label for="imgUrl">영화 이미지 URL</label>
-        </div>
-        <div class="form-floating">
-          <input type="text" class="form-control" id="title" placeholder="Password">
-          <label for="title">타이틀</label>
-        </div>
-        <div class="form-floating">
-          <textarea class="form-control" placeholder="줄거리" id="content"></textarea>
-          <label for="content">줄거리</label>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="sel-movie">영화제목</label>
+            <select class="form-select" id="sel-movie">
+                <option selected>--선택하기--</option>
+            </select>
         </div>
         <div class="input-group mb-3">
-          <label class="input-group-text" for="rating">별점</label>
-          <select class="form-select" id="rating">
-            <option selected>--선택하기--</option>
-            <option value="1">⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="5">⭐⭐⭐⭐⭐</option>
-          </select>
+            <label class="input-group-text" for="rating">별점</label>
+            <select class="form-select" id="rating">
+                <option selected>--선택하기--</option>
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
         </div>
         <div class="form-floating">
-          <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
-          <label for="comment">Comments</label>
+            <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
+            <label for="comment">Comments</label>
         </div>
         <div class="post-btn">
             <button type="button" onclick="addCard()" class="btn btn-dark">기록하기</button>
@@ -265,5 +110,4 @@
         </div>
     </section>
 </body>
-
 </html>
