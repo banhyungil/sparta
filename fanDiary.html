@@ -6,7 +6,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&family=Nanum+Gothic+Coding:wght@400;700&display=swap');
         .title {
@@ -54,6 +54,9 @@
        }
 
        article .userNm {
+           /* <property> <duration> <timing-function> <delay>
+           property : 속성값 명시, all로 설정시 모든 속성에 적용
+           */
            transition: color .4s ease;
        }
        article .userNm {
@@ -62,13 +65,49 @@
        }
        .sect-comment > article:hover > .comment{
            font-weight: bolder;
-           box-shadow: inset 600px 0 0 #fff685;       /* inset | offset-x | offset-y | color */
+           /* inset | offset-x | offset-y | color
+           inset : 안에서 그림자가 드리운다
+           */
+           box-shadow: inset 600px 0 0 #fff685;
        }
        .sect-comment > article:hover > .userNm{
            color: #fa985a;
            font-weight: bold;
        }
     </style>
+    <script>
+        $("document").ready(init);          // test용, console 출력하여 데이터 확인
+        function init() {
+        }
+
+        function addCheer() {
+            // 1. element 생성
+            let userNm = $("#userNm").val();
+            let comment = $("#comment").val();
+            let newArticle = createCheer(userNm, comment);
+
+            // 2. element append
+            $(".sect-comment").append(newArticle);
+        }
+
+        /**
+         *
+         * @param userNm
+         * @param comment
+         * @returns {Element}
+         */
+        function createCheer(userNm, comment) {
+            // 1. 기존 article 복제
+            let cpArticle = document.querySelector(".sect-comment > article");
+            let newArticle = document.importNode(cpArticle, true);
+
+            // 2. 복제된 article에 값 설정
+            newArticle.querySelector("h4").innerText = comment;
+            newArticle.querySelector("h5").innerText = "-- " + userNm;
+
+            return newArticle;
+        }
+    </script>
 </head>
 <body>
     <section class="title">
@@ -84,7 +123,7 @@
               <textarea class="form-control" placeholder="Leave a comment here" id="comment"></textarea>
               <label for="comment">응원댓글</label>
             </div>
-            <button type="button" class="btn btn-dark">응원 남기기</button>
+            <button type="button" class="btn btn-dark" onclick="addCheer()">응원 남기기</button>
         </section>
         <section class="sect-comment">
             <article>
