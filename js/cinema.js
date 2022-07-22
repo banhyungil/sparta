@@ -2,7 +2,7 @@ $("document").ready(init);
 function init () {
     // 데이터 조회
     let arrMovie = selectMovies();
-
+    console.log(arrMovie);
     // 데이터 기반으로 option 생성, text는 title로 지정
     arrMovie.forEach((oMovie, idx) => {
         let eOption = `<option value="${idx}">${oMovie.title}</option>`   // template literal, backtick 사용
@@ -61,59 +61,76 @@ function addCard () {
     let divCardCntr = document.querySelector("#cardCntr");
 
     // card 생성
-    let newCard = createCard(oCard);
-    console.log(newCard);
+    let htmlCard = createCard(oCard);
 
     // card 끝에 추가
-    divCardCntr.append(newCard);
+    $(divCardCntr).append(htmlCard);
 }
+
 function createCard (oCard) {
+    let card = `
+    <div class="col">
+        <div class="card">
+            <img src="${oCard.imgUrl}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">${oCard.title}</h5>
+                    <p class="card-content">${oCard.content}</p>
+                    <p class="card-rating">${oCard.rating}</p>
+                    <p class="card-comment">${oCard.comment}</p>
+                </div>
+        </div>
+    </div>`
 
-    let divCard = $("#cardCntr > .col")[0];
-
-    let newCard = document.importNode(divCard, true);   // card 복사
-    // 복사 카드 입력값으로 설정
-    let keys = Object.keys(oCard);
-    for(let key of keys){
-        setCard(newCard, key, oCard[key]);
-    }
-
-    // 생성된 카드 반환
-    return newCard;
+    return card;
 }
-function setCard (card, type, val) {
-     // 카드내에 특정 엘리먼트에 접근해 값을 바꿔야한다.
-    /**
-     * 엘리먼트 접근자
-     * img : .card-img-top
-     * title : .card-title
-     * content : .card-content
-     * rating : .card-rating
-     * comment : .card-comment
-     */
-    switch (type) {
-        case "imgUrl":
-            $(card).find(".card-img-top").eq(0).attr("src", val);
-
-            break;
-        case "title":
-            $(card).find(".card-title").eq(0).html(val);
-
-            break;
-        case "content":
-            $(card).find(".card-content").eq(0).html(val);
-
-            break;
-        case "rating":
-            $(card).find(".card-rating").eq(0).html(val);
-
-            break;
-        case "comment":
-            $(card).find(".card-comment").eq(0).html(val);
-
-            break;
-    }
-}
+/* 카드 복제 기능 */
+// function createCard (oCard) {
+//
+//     let divCard = $("#cardCntr > .col")[0];
+//
+//     let newCard = document.importNode(divCard, true);   // card 복사, deep copy
+//     // 복사 카드 입력값으로 설정
+//     let keys = Object.keys(oCard);
+//     for(let key of keys){
+//         setCard(newCard, key, oCard[key]);
+//     }
+//
+//     // 생성된 카드 반환
+//     return newCard;
+// }
+// function setCard (card, type, val) {
+//      // 카드내에 특정 엘리먼트에 접근해 값을 바꿔야한다.
+//     /**
+//      * 엘리먼트 접근자
+//      * img : .card-img-top
+//      * title : .card-title
+//      * content : .card-content
+//      * rating : .card-rating
+//      * comment : .card-comment
+//      */
+//     switch (type) {
+//         case "imgUrl":
+//             $(card).find(".card-img-top").eq(0).attr("src", val);
+//
+//             break;
+//         case "title":
+//             $(card).find(".card-title").eq(0).html(val);
+//
+//             break;
+//         case "content":
+//             $(card).find(".card-content").eq(0).html(val);
+//
+//             break;
+//         case "rating":
+//             $(card).find(".card-rating").eq(0).html(val);
+//
+//             break;
+//         case "comment":
+//             $(card).find(".card-comment").eq(0).html(val);
+//
+//             break;
+//     }
+// }
 function getMovieInfo (target) {
     let arrMovie = selectMovies();
 

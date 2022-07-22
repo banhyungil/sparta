@@ -17,7 +17,11 @@
     <style>                                     /* 외부 css 파일 import */
         @import url('css/cinema.css');
     </style>
-    <<script defer src="js/cinema.js"></script>         <!-- 외부 js 파일 import -->
+    <!--<script defer src="js/cinema.js"></script> -->        <!-- 외부 js 파일 import -->
+
+    <script>
+
+    </script>
 </head>
 
 <body>
@@ -26,11 +30,9 @@
         <button>영화 기록하기</button>
     </div>
     <section class="sec-post">
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="sel-movie">영화제목</label>
-            <select class="form-select" id="sel-movie">
-                <option selected>--선택하기--</option>
-            </select>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">영화 URL</label>
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text" for="rating">별점</label>
@@ -48,7 +50,7 @@
             <label for="comment">Comments</label>
         </div>
         <div class="post-btn">
-            <button type="button" onclick="addCard()" class="btn btn-dark">기록하기</button>
+            <button type="button" onclick="hey()" class="btn btn-dark">기록하기</button>
             <button type="button" class="btn btn-outline-dark">닫기</button>
         </div>
     </section>
@@ -57,7 +59,7 @@
             <div class="col">
                 <div class="card">
                     <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top" alt="..." >
+                         class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">수어사이드 스쿼드</h5>
                         <p class="card-content">악당을 악당으로! 슈퍼 빌런 팀 수어사이드 스쿼드 창설</p>
