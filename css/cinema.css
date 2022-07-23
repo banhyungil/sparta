@@ -51,6 +51,7 @@
             padding: 20px;
             font-family: 'Black Han Sans', sans-serif;
             font-size: 30px;
+            display: none;
         }
         .sec-post > div {
             margin-top: 10px;
