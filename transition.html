@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+        #title {
+            font-size: 16px;
+            transition: font-size .5s ease;
+        }
+        #title:hover {
+            font-size: 20px;
+        }
+        #sub-title {
+            transition: box-shadow .5s ease;
+        }
+        #sub-title:hover {
+            /* box-shadow는 그림자 생성 속성*/
+           /* inset : 안에서 그림자가 드리운다 */
+           box-shadow: inset 600px 0 0 #fff685; /* inset | offset-x | offset-y | color */
+        }
+        #multi {
+            transition: box-shadow .5s ease, font-size .5s ease;
+        }
+        #multi:hover {
+             box-shadow: inset 600px 0 0 #fff685;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+  <h1 id="title">font size 크기</h1>
+  <h2 id="sub-title">box shadow</h2>
+  <h2 id="multi">multi</h2>
+</body>
+</html>
