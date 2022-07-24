@@ -17,9 +17,20 @@ margin-top: 30px;
 </style>
 
 <script>
-function q1() {
-// 여기에 코드를 입력하세요
-}
+    function q1() {
+        $.ajax({
+           type: "GET",
+           dataType: "json",
+           url: "http://spartacodingclub.shop/sparta_api/rtan",
+            success: function(response) {
+               let msg = response.msg;
+               let url = response.url;
+
+               $('#img-rtan').attr('src', url);
+               $('#text-rtan').text(msg);
+            }
+        });
+    }
 </script>
 
 </head>
