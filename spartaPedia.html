@@ -19,20 +19,60 @@
     </style>
 
     <script>
-        $.ajax({
-            type: "GET",
-            url: "http://spartacodingclub.shop/sparta_api/seoulair",
-            data: {},
-            success: function(response) {
-                let rows = response['RealtimeCityAir']['row'];
+        $(document).ready(function(){
+            listing();
+        });
 
+//         comment": "cc",
+// "desc": "네이버 메인에서 다양한 정보와 유용한 컨텐츠를 만나 보세요",
+// "image": "https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png",
+// "star": "2",
+// "title": "네이버"
+        $.ajax({
+           type: "GET",
+           url: "http://spartacodingclub.shop/web/api/movie",
+            success: function (res) {
+                let rows = res['movies'];
                 for (let i = 0; i < rows.length; i++) {
-                    let gu_name = rows[i]['MSRRGN_NM'];
-                    let gu_mise = rows[i]['MSRSTE_NM'];
-                    console.log(gu_name, gu_mise)
+                    let row = rows[i];
+                    let title = row.title;
+                    let desc = row.desc;
+                    let image = row.image;
+                    let star = row.star;
+                    let comment = row.comment;
+
+                    let cardHtml = getCardHtml(title, desc, image, star, comment);
+
+                    $('#cardCntr').append(cardHtml);
                 }
             }
         });
+
+        function getCardHtml (title, desc, image, star, comment) {
+            let sStar = '⭐'.repeat(star);
+
+            let cardHtml = `<div class="col">
+                                <div class="card">
+                                    <img src="${image}"
+                                         class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${title}</h5>
+                                        <p class="card-content">${desc}</p>
+                                        <p class="card-rating">${sStar}</p>
+                                        <p class="card-comment">
+                                            ${comment}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>`
+
+            return cardHtml;
+        }
+
+        function listing() {
+            console.log('화면 로딩 후 잘 실행되었습니다');
+        }
+
         function openBox() {
             $('#post-box').show();
         }
@@ -74,59 +114,7 @@
     </section>
     <section class="sec-card">
         <div id="cardCntr" class="row row-cols-1 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="card">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">수어사이드 스쿼드</h5>
-                        <p class="card-content">악당을 악당으로! 슈퍼 빌런 팀 수어사이드 스쿼드 창설</p>
-                        <p class="card-rating">⭐⭐⭐</p>
-                        <p class="card-comment">
-                            다들 처음보는 악당들이였는데, 꽤 스릴있게 본것 같다. 빌런들이 힘을 합치는 모습 신선하다👍
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://upload.wikimedia.org/wikipedia/ko/b/bc/%EB%B0%B1%EB%91%90%EC%82%B0_%EC%98%81%ED%99%94_%ED%8F%AC%EC%8A%A4%ED%84%B0.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">백두산</h5>
-                        <p class="card-content">대한민국 관측 역사상 최대 규모의 백두산 폭발 발생.
-                            갑작스러운 재난에 한반도는 순식간에 아비규환이 되고,
-                            남과 북 모두를 집어삼킬 추가 폭발이 예측된다.</p>
-                        <p class="card-rating">⭐⭐⭐⭐</p>
-                        <p class="card-comment">이병헌에 진지함과 하정우의 가벼움이 조화가되어 웃음이 터진 영화, 재밌었다😁</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201602/19/htm_2016021916543471961.jpg"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">뷰티인사이드</h5>
-                        <p class="card-content">자고 일어나면 내 모습이 바뀐다! 이 모습으로 사랑 할 수 있을까?</p>
-                        <p class="card-rating">⭐⭐⭐⭐</p>
-                        <p class="card-comment">한효주는 역시 예쁘다😀</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img src="https://t1.daumcdn.net/cfile/tistory/9921633E5E4A86EE30"
-                         class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">1917</h5>
-                        <p class="card-content">시간이 적이다. 제한된 시간안에 작전을 수행하라</p>
-                        <p class="card-rating">⭐⭐⭐⭐⭐</p>
-                        <p class="card-comment">원테이크 신으로 영화가 제작되었는데 엄청 신선하였고 몰입도 있게 보았던 영화.
-                            5번 까지는 다시 봐도 안 질릴듯.😌</p>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
 </body>
